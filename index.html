@@ -16,10 +16,11 @@
   <body>
     <main class="container">
       <img class="logo" src="./images/seagm-logo.svg" />
+
       <div class="status-card">
-        <div class="text">
-          <h1 class="title">Payment Verify</h1>
-          <p class="description caption">
+        <div>
+          <h1>Payment Verify</h1>
+          <p class="description">
             Your order is under review. You will be required to either perform a
             payment verification or supply us with more information for us to
             investigate and clear the transaction
@@ -36,32 +37,31 @@
             payment verification or supply us with more information for us to
             investigate and clear the transaction
           </p>
-          <div class="upload-step">
-            <img
-              id="step-1-img"
-              class="placeholder-img"
-              src="./images/sample.png" />
-            <div>
+          <div class="upload-image">
+            <div class="placeholder-frame">
+              <img id="step-1-img" src="./images/sample.png" />
+            </div>
+            <div class="requirements">
               <h3 class="require-title">Requirements</h3>
               <ol>
-                <li class="require-list">
-                  Clear selfie with holding a passport/ID card;
-                </li>
-                <li class="require-list">
+                <li>Clear selfie with holding a passport/ID card;</li>
+                <li>
                   Written note of
                   <span class="date-tag" id="verify-date"></span>
                 </li>
               </ol>
-              <label class="btw select-image" onchange="setImage()">
-                <input
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg"
-                  id="step-1" />
-                Select Picture
-              </label>
-              <p id="step-1-oversize" class="disabled oversize">
-                The image is too large. The maximum size is 5MB.
-              </p>
+              <div class="select-img-btn">
+                <label class="btn" onchange="setImage()">
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg"
+                    id="step-1" />
+                  Select Picture
+                </label>
+                <p id="step-1-oversize" class="disabled oversize">
+                  The image is too large. The maximum size is 5MB.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -71,36 +71,38 @@
           <p class="description">
             Your order is under review. You will be required to either perform a
             payment verification or supply us with more information for us to
-            investigate and clear the transaction
+            investigate and clear the transaction.
           </p>
-          <div class="upload-step">
-            <img
-              id="step-2-img"
-              class="placeholder-img"
-              src="./images/image.svg" />
-            <div>
+          <div class="upload-image">
+            <div class="placeholder-frame">
+              <img id="step-2-img" src="./images/image.svg" />
+            </div>
+            <div class="requirements">
               <h3 class="require-title">Requirements</h3>
               <ol>
-                <li class="require-list">
-                  Clear selfie with holding a passport/ID card;
-                </li>
-                <li class="require-list">Written note of</li>
+                <li>Clear selfie with holding a passport/ID card;</li>
+                <li>Written note of</li>
               </ol>
 
-              <label class="btw select-image" onchange="setImage()">
-                <input
-                  type="file"
-                  accept="image/png, image/jpeg, image/jpg"
-                  id="step-2" />
-                Select Picture
-              </label>
-              <p id="step-2-oversize" class="disabled oversize">
-                The image is too large. The maximum size is 5MB.
-              </p>
+              <div class="select-img-btn">
+                <label class="btn" onchange="setImage()">
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg"
+                    id="step-2" />
+                  Select Picture
+                </label>
+                <p id="step-2-oversize" class="disabled oversize">
+                  The image is too large. The maximum size is 5MB.
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <input class="btn-submit" type="submit" value="Upload" />
+        <label class="btn-submit">
+          <input type="submit" value="Upload" />
+          Upload
+        </label>
       </form>
     </main>
     <script>
@@ -115,6 +117,7 @@
       // 将选择的图片存在uploadFileList里
       const uploadFileObj = {};
       function setImage() {
+        if (event.target.files.length === 0) return;
         const file = event.target.files[0];
         const oversizeID = `${event.target.id}-oversize`;
         const warning = document.getElementById(oversizeID);
